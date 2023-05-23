@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh 'docker build -t dmanov/nodejs-app'
+                sh 'docker build -t dmanov/nodejs-app .'
                 sh 'docker push dmanov/nodejs-app:latest'
             }
         }
