@@ -62,6 +62,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
+                sh 'docker container rm -f mynodejsapp || true'
                 sh 'docker run -d -p 4000:3000 --name= nodejs-app dmanov/nodejs-app'
             }
         }
