@@ -40,15 +40,15 @@ pipeline {
                 sh 'npm test' //This is for testing the nodejs modules
             }
         }
-        stage('Docker login') {
-            steps {
-                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
-            }
-        }
         stage('Docker build') {
             steps {
                 sh 'docker build -t ${IMAGE_NAME} -f Dockerfile .'
                 sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+        stage('Docker login') {
+            steps {
+                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
             }
         }
         stage('Docker push') {
