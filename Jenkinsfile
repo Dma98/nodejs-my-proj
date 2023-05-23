@@ -46,13 +46,9 @@ pipeline {
                 sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
-        stage('Docker login') {
-            steps {
-                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
-            }
-        }
         stage('Docker push') {
             steps {
+                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
                 sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
@@ -63,7 +59,7 @@ pipeline {
         //         sh 'forever start src/index.js'
         //    }
         // }
-        stage('Start') {
+        stage('Deploy') {
             steps {
                 sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
                 sh 'docker run -d -p 3000:3000 --name= nodejs-app dmanov/nodejs-app'
