@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
         </style>
       </head>
       <body>
-        <h2>Hello DevOps</h2>
+        <h2>Hello DevOps!</h2>
       </body>
     </html>
   `;
