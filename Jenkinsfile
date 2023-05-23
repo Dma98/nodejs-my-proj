@@ -65,8 +65,8 @@ pipeline {
         // }
         stage('Start') {
             steps {
-                sh 'docker pull ${IMAGE_NAME}:latest'
-                sh 'docker run -d -p 3000:3000 ${IMAGE_NAME}:latest'
+                sh 'docker pull ${IMAGE_NAME}:38'
+                sh 'docker run -d -p 3000:3000 ${IMAGE_NAME}:38'
             }
         }
     }
