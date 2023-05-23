@@ -12,7 +12,6 @@ pipeline {
         githubPush()
     }
 
-
     stages {
 
         stage('Clean') {
