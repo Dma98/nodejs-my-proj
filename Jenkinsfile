@@ -35,6 +35,10 @@ pipeline {
                 sh 'npm test' //This is for testing the nodejs modules
             }
         }
+        stage('Docker build') {
+            sh 'docker build -t dmanov/nodejs-app'
+            sh 'docker push dmanov/nodejs-app:latest'
+        }
         stage('Deploy') {
            steps {
                 sh 'pkill node | true'
