@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'group1'
+        label 'static-slaves'
     }
 
     tools {
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/stoenpav/nodejs-my-proj.git'
+                git branch: 'main', url: 'https://github.com/Dma98/nodejs-my-proj'
             }
         }
         stage('Build') {
