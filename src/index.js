@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
         </style>
       </head>
       <body>
-        <h2>!! DevOps Rules !!</h2>
+        <h2>! DevOps Rules !</h2>
       </body>
     </html>
   `;
