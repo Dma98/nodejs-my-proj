@@ -12,6 +12,10 @@ pipeline {
     triggers {
         githubPush()
     }
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('my_dockerhub_creds')
+        IMAGE_NAME = 'dmanov/nodejs-app'
+    }
 
     stages {
 
@@ -36,10 +40,20 @@ pipeline {
                 sh 'npm test' //This is for testing the nodejs modules
             }
         }
+        stage('Docker login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
         stage('Docker build') {
             steps {
-                sh 'docker build -t dmanov/nodejs-app -f Dockerfile .'
-                sh 'docker tag dmanov/nodejs-app dmanov/nodejs-app${BUILD_NUMBER}'
+                sh 'docker build -t ${IMAGE_NAME} -f Dockerfile .'
+                sh 'docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+        stage('Docker push') {
+            steps {
+                sh 'docker push ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
         stage('Deploy') {
