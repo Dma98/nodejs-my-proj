@@ -11,12 +11,12 @@ app.get('/', (req, res) => {
       <head>
         <style>
           body {
-            background-color: blue;
+            background-color: white;
           }
         </style>
       </head>
       <body>
-        <h2>!DevOps is Awesome!</h2>
+        <h2>DevOps is Awesome!</h2>
       </body>
     </html>
   `;
