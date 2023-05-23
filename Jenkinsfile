@@ -63,6 +63,12 @@ pipeline {
         //         sh 'forever start src/index.js'
         //    }
         // }
+
+        stage('Docker login 2') {
+            steps {
+                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
+            }
+        }
         stage('Start') {
             steps {
                 sh 'docker run -d -p 3000:3000 --name= nodejs-app ${IMAGE_NAME}'
