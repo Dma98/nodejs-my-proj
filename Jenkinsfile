@@ -61,8 +61,8 @@ pipeline {
         // }
         stage('Deploy') {
             steps {
-                sh 'docker container rm -f mynodejsapp || true'
-                sh 'docker run -d -p 4000:3000 --name= nodejs-app ${IMAGE_NAME}'
+                sh 'docker container rm -f nodejs-app || true'
+                sh 'docker run -d -p 4000:3000 --name=nodejs-app ${IMAGE_NAME}'
             }
         }
     }
